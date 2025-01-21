@@ -7,6 +7,10 @@ class CookingClassesController < ApplicationController
     @cooking_class = CookingClass.all
   end
 
+  def show
+    @offer = Offer.find(params[:id])
+  end
+
   def new
     @cooking_class = CookingClass.new
   end
