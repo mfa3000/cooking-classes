@@ -10,3 +10,63 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #c0c0c0;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.btn-primary {
+  background-color: #1b253d;
+  border-color: #1b253d;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  background-color: #d8a048;
+  border-color: #d8a048;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+
+  position: relative;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1b253d;
+  margin-bottom: 8px;
+  display: block;
+  text-transform: capitalize;
+  transition: color 0.3s ease;
+}
+
+label.required::after {
+  color: #1b253d;
+  font-size: 1rem;
+  margin-left: 5px;
+  display: inline;
+  vertical-align: middle;
+  font-weight: thin;
+  margin: 0;
+  padding: 0;
+}
