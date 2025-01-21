@@ -1,0 +1,24 @@
+<h1><%= @offer.title%></h1>
+<p><%= @offer.description%></p>
+<p><%= @offer.price%></p>
+<p><%= @offer.address%></p>
+<p><%= @offer.date%></p>
+<p><%= @offer.time%></p>
+<p><%= @offer.capacity%></p>
+<p><%= @offer.user.first_name%> <%= @offer.user.last_name%></p>
+
+
+<%
+
+=begin%>
+
+title: Faker::Educator.course_name,
+    description: Faker::Lorem.paragraph(sentence_count: 3),
+    price: Faker::Commerce.price(range: 10..50),
+    address: Faker::Address.full_address,
+    date: Faker::Date.forward(days: 30),
+    time: Faker::Time.forward(days: 30, period: :evening),
+    capacity: Faker::Number.between(from: 5, to: 50),
+    user: users.sample
+<%
+=end%>
