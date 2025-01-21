@@ -10,11 +10,12 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = current_user.offer.build(offer_params)
+    @offer = current_user.offers.build(offer_params)
     if @offer.save
       redirect_to offer_path, notice: "Class successfully created."
     else
-      render :new, alert: "There was an error creating the class."
+      flash.now[:alert] = "There was an error creating the class."
+      render :new
     end
   end
 
