@@ -74,3 +74,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# using faker to create seed data
+gem "faker"
