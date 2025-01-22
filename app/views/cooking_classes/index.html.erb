@@ -1,31 +1,30 @@
 
   <!-- search bar  -->
-  <div class="search-container">
+  <div class="search-container" id="first-container">
     <input type="text" class="search-input" placeholder="Location">
     <input type="text" class="search-input" placeholder="Date">
     <input type="number" class="search-input" placeholder="Guests" min="1" max="20">
     <button class="search-button">Search</button>
   </div>
 
-  <!-- class list -->
-<div class="container">
-    <div class="row" id="card-container">
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-content">
-                    <h3>Italien Cooking Classes</h3>
-                    <p class="location">Paris, France</p>
-                    <p class="date">12 fév. – 14 fév.</p>
-                    <p class="description">
-                        Learn how to prepare authentic Italian dishes with a professional chef.
-                    </p>
-                    <p class="price"><strong>120 €</strong> per person</p>
-                    <div class="rating">
-                        <span>⭐ 4,8 (320 avis)</span>
-                    </div>
-                    <a href="#booking" class="btn btn-primary mt-3">Book now</a>
-                </div>
-            </div>
+<!-- Class list -->
+<div class="container" id="second-container">
+  <div class="row" id="card-container">
+    <% @cooking_classes.each do |cooking_class| %>
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <div class="card-content">
+            <h3><%= cooking_class.title %></h3>
+            <p class="location"><%= cooking_class.address %></p>
+            <p class="date"><%= cooking_class.date.strftime('%d %b – %d %b') %></p>
+            <p class="description"><%= cooking_class.description %></p>
+            <p class="price">
+              <strong><%= number_to_currency(cooking_class.price, unit: "€") %></strong> per person
+            </p>
+            <a href="#seemore" class="btn btn-primary mt-3">See More</a>
+          </div>
         </div>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>
