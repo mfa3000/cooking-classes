@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
+    <%= link_to cooking_classes_path, class: "navbar-brand" do %>
       <%= image_tag "logo-cooking-classes.png" %>
     <% end %>
 
@@ -16,16 +16,17 @@
             <%= image_tag "Account Circle Icon.svg", class: "avatar", alt: "dropdown menu" %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "My offered classes", "#", class: "dropdown-item" %>
+              <%= link_to "My offered classes", my_cooking_classes_path, class: "dropdown-item" %>
+              <%= link_to "My booked classes", bookings_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
           <li class="nav-item active">
-            <%= link_to "All Classes", "offers#index", class: "nav-link" %>
+            <%= link_to "All Classes", cooking_classes_path, class: "nav-link" %>
           </li>
           <li class="nav-item active">
-            <%= link_to "Offer a class", "offers#create", class: "nav-link" %>
+            <%= link_to "Offer a class", new_cooking_class_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>

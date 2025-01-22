@@ -1,23 +1,30 @@
-<h1>Offers#index</h1>
-    <!-- navbar -->
-    <div class="container">
-    </div>
 
-     <!-- search bar  -->
-     <div class="container">
-     </div>
+  <!-- search bar  -->
+  <div class="search-container" id="first-container">
+    <input type="text" class="search-input" placeholder="Location">
+    <input type="text" class="search-input" placeholder="Date">
+    <input type="number" class="search-input" placeholder="Guests" min="1" max="20">
+    <button class="search-button">Search</button>
+  </div>
 
-    <!-- class list -->
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card">
+<!-- Class list -->
+<div class="container" id="second-container">
+  <div class="row" id="card-container">
+    <% @cooking_classes.each do |cooking_class| %>
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <div class="card-content">
+            <h3><%= cooking_class.title %></h3>
+            <p class="location"><%= cooking_class.address %></p>
+            <p class="date"><%= cooking_class.date.strftime('%d %b – %d %b') %></p>
+            <p class="description"><%= cooking_class.description %></p>
+            <p class="price">
+              <strong><%= number_to_currency(cooking_class.price, unit: "€") %></strong> per person
+            </p>
+            <a href="<%= cooking_class_path(cooking_class) %>" class="btn btn-primary mt-3">See More</a>
           </div>
         </div>
-        <div class="col-sm-4">
-        </div>
-        <div class="col-sm-4">
-        </div>
       </div>
-    </div>
-<!-- end of file -->
+    <% end %>
+  </div>
+</div>
