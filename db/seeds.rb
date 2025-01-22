@@ -12,7 +12,7 @@ require 'faker'
 
 puts "clears exiting data"
 # Clear existing data (optional)
-Offer.destroy_all
+CookingClass.destroy_all
 User.destroy_all
 
 puts "creating fake data for users"
@@ -28,11 +28,11 @@ users = []
 end
 puts "fake users created"
 
-puts "creating fake data for offers"
-# Create fake offers
+puts "creating fake data for cooking classes"
+# Create fake cooking classes
 20.times do
-  Offer.create(
-    title: Faker::Educator.course_name,
+  CookingClass.create(
+    title: "#{Faker::Food.ethnic_category} #{Faker::Food.dish} class",
     description: Faker::Lorem.paragraph(sentence_count: 3),
     price: Faker::Commerce.price(range: 10..50),
     address: Faker::Address.full_address,
@@ -42,4 +42,4 @@ puts "creating fake data for offers"
     user: users.sample
   )
 end
-puts "fake offers created"
+puts "fake cooking class created"
