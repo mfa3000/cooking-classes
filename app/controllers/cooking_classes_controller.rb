@@ -44,8 +44,8 @@ class CookingClassesController < ApplicationController
   def edit
     @cooking_class = CookingClass.find(params[:id])
   end
-  
-   def book
+
+  def book
     booking = current_user.bookings.new(cooking_class: @cooking_class)
     if booking.save
       redirect_to bookings_path, notice: "Class successfully booked."
@@ -53,7 +53,11 @@ class CookingClassesController < ApplicationController
       redirect_to cooking_class_path(@cooking_class), alert: "Error booking class."
     end
   end
-  
+
+  def my_cooking_classes
+    @cooking_classes = current_user.cooking_classes
+  end
+
 private
 
   def cooking_class_params
