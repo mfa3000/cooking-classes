@@ -6,8 +6,6 @@
 <p><%= @cooking_class.time%></p>
 <p><%= @cooking_class.capacity%></p>
 <p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
-
-
 <%
 
 =begin%>
@@ -22,3 +20,26 @@ title: Faker::Educator.course_name,
     user: users.sample
 <%
 =end%>
+
+
+ <!-- Booking FORM -->
+<div class="booking container">
+  <h4>Book this Class</h4>
+  <%= form_with url: bookings_path, method: :post, local: true do |form| %>
+    <%= form.hidden_field :cooking_class_id, value: @cooking_class.id %>
+
+    <div>
+      <%= form.label :date, "Event Date" %>
+      <%= form.date_field :date, value: @cooking_class.date.strftime('%Y-%m-%d') %>
+    </div>
+
+    <div>
+      <%= form.label :participants, "Number of Participants"%>
+      <%= form.number_field :participants%>
+    </div>
+
+    <div>
+    <%= form.submit "Confirm Booking"%>
+    </div>
+  <% end %>
+</div>

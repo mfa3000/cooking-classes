@@ -18,5 +18,5 @@ Rails.application.routes.draw do
     post :book, on: :member
   end
 
-  resources :bookings, only: [:index]
+  resources :bookings, only: [:index, :create]
 end
