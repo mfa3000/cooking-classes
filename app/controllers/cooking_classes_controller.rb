@@ -26,7 +26,8 @@ class CookingClassesController < ApplicationController
 
   def destroy
     if @cooking_class.destroy
-      redirect_to cooking_classes_path, notice: "Class successfully deleted."
+      redirect_to request.referer&.include?(my_cooking_classes_path) ? my_cooking_classes_path : cooking_classes_path,
+        notice: "Class successfully deleted."
     else
       redirect_to cooking_classes_path, alert: "Failed to delete the class."
     end
