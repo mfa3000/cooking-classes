@@ -9,9 +9,8 @@
       <p><strong>Price:</strong> $<%= cooking_class.price %></p>
       <p><strong>Date:</strong> <%= cooking_class.date %></p>
       <p><strong>Time:</strong> <%= cooking_class.time.strftime("%I:%M %p") %></p>
-      <%= form_with url: cooking_class_path(cooking_class), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this class?" }, class: "d-inline" do %>
-        <%= submit_tag "Delete", class: "btn btn-danger" %>
-      <% end %>
+      <%= link_to "Edit", edit_cooking_class_path(cooking_class), class: "btn btn-primary" %>
+
     </div>
   <% end %>
 <% else %>

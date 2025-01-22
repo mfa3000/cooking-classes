@@ -1,14 +1,14 @@
 class CookingClassesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy, :book]
-  before_action :set_cooking_class, only: [:show, :destroy, :book]
-  before_action :authorize_user, only: [:destroy]
+  before_action :set_cooking_class, only: [:show, :destroy, :book, :edit]
+  before_action :authorize_user, only: [:destroy, :edit]
 
   def index
     @cooking_classes = CookingClass.all
   end
 
   def show
-    @cooking_class = CookingClass.find(params[:id])
+
     @user = "currentUser"
   end
 
@@ -44,7 +44,6 @@ class CookingClassesController < ApplicationController
   end
 
   def edit
-    @cooking_class = CookingClass.find(params[:id])
   end
 
   def book
@@ -71,6 +70,7 @@ private
   end
 
   def authorize_user
+    @cooking_class = CookingClass.find(params[:id])
     unless @cooking_class.user == current_user
       redirect_to cooking_classes_path, alert: "You are not authorized to delete this class."
     end
