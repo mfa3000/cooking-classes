@@ -33,10 +33,42 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 15px;
   transition: transform 0.3s, box-shadow 0.3s;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
 }
 
-.card-content h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+.card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-content p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.price {
+  font-size: 16px;
   font-weight: bold;
+  color: #333;
+}
+
+.card-content a {
+  font-size: 14px;
+  padding: 10px 20px;
+  background-color: #982121;
+  text-align: center;
+  border-radius: 4px;
+  margin-top: auto;
+}
+
+.card-content a:hover {
+  background-color: #813531;
+}
+
+#first-container {
+  margin-bottom: 40px;
 }
