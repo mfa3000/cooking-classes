@@ -1,12 +1,13 @@
-<h1><%= @cooking_class.title%></h1>
-<p><%= @cooking_class.description%></p>
-<p><%= @cooking_class.price%></p>
-<p><%= @cooking_class.address%></p>
-<p><%= @cooking_class.date%></p>
-<p><%= @cooking_class.time%></p>
-<p><%= @cooking_class.capacity%></p>
-<p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
+<div class="container">
+  <h1><%= @cooking_class.title%></h1>
+  <p><%= @cooking_class.description%></p>
+  <p><%= @cooking_class.price%></p>
+  <p><%= @cooking_class.address%></p>
+  <p><%= @cooking_class.date%></p>
+  <p><%= @cooking_class.time%></p>
+  <p><%= @cooking_class.capacity%></p>
+  <p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
 
 
-
-<%= link_to "Back to overview", cooking_classes_path, class: "btn btn-primary" %>
+  <%= link_to "Back to overview", cooking_classes_path, class: "btn btn-primary" %>
+</div>
