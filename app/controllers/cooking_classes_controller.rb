@@ -4,7 +4,7 @@ class CookingClassesController < ApplicationController
   before_action :authorize_user, only: [:destroy]
 
   def index
-    @cooking_class = CookingClass.all
+    @cooking_classes = CookingClass.all
   end
 
   def show

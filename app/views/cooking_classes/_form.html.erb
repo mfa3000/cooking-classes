@@ -1,0 +1,44 @@
+<%= simple_form_for @cooking_class do |f| %>
+  <%= f.error_notification %>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :title, label: "Class Title" %>
+      </div>
+    <div class="col-md-6">
+    <%= f.input :description, as: :text, label: "Class Description" %>
+    </div>
+</div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :price, as: :integer, label: "Price", step: 0.01 %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :address, label: "Class Address" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :date, as: :string, input_html: { data: { controller: "datepicker" } }, label: "Class Date" %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :time, as: :time, label: "Class Time" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :capacity, as: :integer, label: "Maximum Participants", step: 1 %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :photo, as: :file, label: "Choose a picture" %>
+      </div>
+    </div>
+
+  <div class="form-group">
+    <%= f.button :submit, "Create Class", class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>
