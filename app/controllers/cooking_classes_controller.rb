@@ -32,7 +32,20 @@ class CookingClassesController < ApplicationController
     end
   end
 
-  def book
+  def update
+    @cooking_class = CookingClass.find(params[:id])
+    if @cooking_class.update(product_params)
+      redirect_to @cooking_class
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @cooking_class = CookingClass.find(params[:id])
+  end
+  
+   def book
     booking = current_user.bookings.new(cooking_class: @cooking_class)
     if booking.save
       redirect_to bookings_path, notice: "Class successfully booked."
@@ -40,7 +53,7 @@ class CookingClassesController < ApplicationController
       redirect_to cooking_class_path(@cooking_class), alert: "Error booking class."
     end
   end
-
+  
 private
 
   def cooking_class_params
@@ -56,4 +69,6 @@ private
       redirect_to cooking_classes_path, alert: "You are not authorized to delete this class."
     end
   end
+
+
 end

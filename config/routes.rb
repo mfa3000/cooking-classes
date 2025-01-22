@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "classes#index"
 
-  resources :cooking_classes, only: [:index, :new, :create, :destroy, :show] do
+  resources :cooking_classes, only: [:index, :new, :create, :destroy, :show, :update, :edit] do
     post :book, on: :member
   end
 
