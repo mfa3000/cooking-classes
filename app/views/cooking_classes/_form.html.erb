@@ -36,9 +36,13 @@
         <%= f.input :photo, as: :file, label: "Choose a picture" %>
       </div>
     </div>
-
   <div class="form-group">
+  <%if @cooking_class.title == nil%>
     <%= f.button :submit, "Create Class", class: "btn btn-primary" %>
+  <%else%>
+    <%= f.button :submit, "Save changes", class: "btn btn-primary" %>
+
+  <%end%>
   </div>
 </div>
 <% end %>
