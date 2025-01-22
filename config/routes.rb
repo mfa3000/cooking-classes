@@ -19,4 +19,8 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: [:index, :create]
+
+  get "/my_cooking_classes", to: "cooking_classes#my_cooking_classes", as: :my_cooking_classes
+
+
 end

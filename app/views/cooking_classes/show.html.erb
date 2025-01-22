@@ -1,28 +1,21 @@
-<h1><%= @cooking_class.title%></h1>
-<p><%= @cooking_class.description%></p>
-<p><%= @cooking_class.price%></p>
-<p><%= @cooking_class.address%></p>
-<p><%= @cooking_class.date%></p>
-<p><%= @cooking_class.time%></p>
-<p><%= @cooking_class.capacity%></p>
-<p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
-<%
-
-=begin%>
-
-title: Faker::Educator.course_name,
-    description: Faker::Lorem.paragraph(sentence_count: 3),
-    price: Faker::Commerce.price(range: 10..50),
-    address: Faker::Address.full_address,
-    date: Faker::Date.forward(days: 30),
-    time: Faker::Time.forward(days: 30, period: :evening),
-    capacity: Faker::Number.between(from: 5, to: 50),
-    user: users.sample
-<%
-=end%>
+<div class="container">
+  <h1><%= @cooking_class.title%></h1>
+  <p><%= @cooking_class.description%></p>
+  <p><%= @cooking_class.price%></p>
+  <p><%= @cooking_class.address%></p>
+  <p><%= @cooking_class.date%></p>
+  <p><%= @cooking_class.time%></p>
+  <p><%= @cooking_class.capacity%></p>
+  <p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
 
 
- <!-- Booking FORM -->
+  <%= link_to "Back to overview", cooking_classes_path, class: "btn btn-primary" %>
+
+</div>
+ 
+
+
+<!-- Booking FORM -->
 <div class="booking container">
   <h4>Book this Class</h4>
   <%= form_with url: bookings_path, method: :post, local: true do |form| %>
@@ -42,4 +35,5 @@ title: Faker::Educator.course_name,
     <%= form.submit "Confirm Booking"%>
     </div>
   <% end %>
-</div>
+
+
