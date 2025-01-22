@@ -21,7 +21,7 @@
             <p class="price">
               <strong><%= number_to_currency(cooking_class.price, unit: "€") %></strong> per person
             </p>
-            <a href="#seemore" class="btn btn-primary mt-3">See More</a>
+            <a href="<%= cooking_class_path(cooking_class) %>" class="btn btn-primary mt-3">See More</a>
           </div>
         </div>
       </div>
