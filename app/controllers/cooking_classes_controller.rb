@@ -8,7 +8,7 @@ class CookingClassesController < ApplicationController
   end
 
   def show
-    @offer = Offer.find(params[:id])
+    @cooking_class = CookingClass.find(params[:id])
   end
 
   def new
@@ -32,6 +32,19 @@ class CookingClassesController < ApplicationController
     end
   end
 
+  def update
+    @cooking_class = CookingClass.find(params[:id])
+    if @cooking_class.update(product_params)
+      redirect_to @cooking_class
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @cooking_class = CookingClass.find(params[:id])
+  end
+
 private
 
   def cooking_class_params
@@ -47,4 +60,6 @@ private
       redirect_to cooking_classes_path, alert: "You are not authorized to delete this class."
     end
   end
+
+
 end
