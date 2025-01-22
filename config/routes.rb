@@ -18,5 +18,7 @@ Rails.application.routes.draw do
     post :book, on: :member
   end
 
+  get "/my_cooking_classes", to: "cooking_classes#my_cooking_classes", as: :my_cooking_classes
+
   resources :bookings, only: [:index]
 end
