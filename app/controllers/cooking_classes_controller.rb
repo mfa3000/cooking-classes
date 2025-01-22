@@ -9,6 +9,7 @@ class CookingClassesController < ApplicationController
 
   def show
     @cooking_class = CookingClass.find(params[:id])
+    @user = "currentUser"
   end
 
   def new
@@ -34,7 +35,7 @@ class CookingClassesController < ApplicationController
 
   def update
     @cooking_class = CookingClass.find(params[:id])
-    if @cooking_class.update(product_params)
+    if @cooking_class.update(cooking_class_params)
       redirect_to @cooking_class
     else
       render :edit, status: :unprocessable_entity
