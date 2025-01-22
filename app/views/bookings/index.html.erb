@@ -1,0 +1,15 @@
+<h1>My Bookings</h1>
+
+<% if @bookings.any? %>
+  <ul>
+    <% @bookings.each do |booking| %>
+      <li>
+        <strong><%= link_to booking.cooking_class.title, cooking_class_path(booking.cooking_class) %></strong>
+        <p><%= booking.cooking_class.description %></p>
+        <p>Date: <%= booking.cooking_class.date %> | Time: <%= booking.cooking_class.time %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no bookings yet.</p>
+<% end %>

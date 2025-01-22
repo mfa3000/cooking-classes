@@ -1,6 +1,6 @@
 class CookingClassesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
-  before_action :set_cooking_class, only: [:destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :book]
+  before_action :set_cooking_class, only: [:show, :destroy, :book]
   before_action :authorize_user, only: [:destroy]
 
   def index
@@ -44,7 +44,16 @@ class CookingClassesController < ApplicationController
   def edit
     @cooking_class = CookingClass.find(params[:id])
   end
-
+  
+   def book
+    booking = current_user.bookings.new(cooking_class: @cooking_class)
+    if booking.save
+      redirect_to bookings_path, notice: "Class successfully booked."
+    else
+      redirect_to cooking_class_path(@cooking_class), alert: "Error booking class."
+    end
+  end
+  
 private
 
   def cooking_class_params
