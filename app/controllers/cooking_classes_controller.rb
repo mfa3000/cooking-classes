@@ -71,8 +71,9 @@ class CookingClassesController < ApplicationController
   def cancel_booking
     booking = current_user.bookings.find_by(cooking_class: @cooking_class)
     if booking
+      participants = booking.participants
       booking.destroy
-      @cooking_class.update(capacity: @cooking_class.capacity + 1)
+      @cooking_class.update(capacity: @cooking_class.capacity + participants)
       redirect_to cooking_class_path(@cooking_class), notice: "Your booking has been canceled."
     else
       redirect_to cooking_class_path(@cooking_class), alert: "You haven't booked this class."
