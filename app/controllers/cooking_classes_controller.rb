@@ -15,9 +15,15 @@ class CookingClassesController < ApplicationController
     if params[:query].present?
       @cooking_classes = CookingClass.search_by_title_and_description(params[:query])
     end
+    if params[:category].present? && params[:category] != "All"
+      @cooking_classes = @cooking_classes.where(category: params[:category])
+    end
 
     if params[:start_date].present? && params[:end_date].present?
       @cooking_classes = @cooking_classes.where(date: params[:start_date]..params[:end_date])
+    end
+    if params[:location].present?
+      @cooking_classes = @cooking_classes.near(params[:location], 10)
     end
   end
 
