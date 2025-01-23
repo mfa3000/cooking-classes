@@ -5,11 +5,15 @@ class CookingClassesController < ApplicationController
 
   def index
     @cooking_classes = CookingClass.all
+    @markers = @cooking_classes.geocoded.map do |cooking_class|
+      {
+        lat: cooking_class.latitude,
+        lng: cooking_class.longitude
+      }
+    end
   end
 
   def show
-
-    @user = "currentUser"
   end
 
   def new
@@ -90,6 +94,4 @@ private
       redirect_to cooking_classes_path, alert: "You are not authorized to delete this class."
     end
   end
-
-
 end
