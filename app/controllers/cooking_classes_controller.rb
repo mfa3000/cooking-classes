@@ -8,7 +8,8 @@ class CookingClassesController < ApplicationController
     @markers = @cooking_classes.geocoded.map do |cooking_class|
       {
         lat: cooking_class.latitude,
-        lng: cooking_class.longitude
+        lng: cooking_class.longitude,
+        # info_window_html: render_to_string(partial: "info_window", locals: {cooking_class: cooking_class})
       }
     end
   end
