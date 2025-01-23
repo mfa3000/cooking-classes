@@ -8,8 +8,9 @@ class CookingClassesController < ApplicationController
   end
 
   def show
-
     @user = "currentUser"
+    total_participants = @cooking_class.bookings.sum(:participants) # Sum the participants from bookings
+    @available_spots = @cooking_class.capacity - total_participants
   end
 
   def new
@@ -46,11 +47,13 @@ class CookingClassesController < ApplicationController
   def edit
   end
   def book
-    if @cooking_class.capacity > 0
-      booking = current_user.bookings.new(cooking_class: @cooking_class)
+    participants = params[:participants].to_i
+
+    if @cooking_class.capacity >= participants
+      booking = current_user.bookings.new(cooking_class: @cooking_class, participants: participants)
       if booking.save
-        @cooking_class.update(capacity: @cooking_class.capacity - 1)
-        redirect_to bookings_path, notice: "Class successfully booked."
+        @cooking_class.update(capacity: @cooking_class.capacity - participants)
+        redirect_to bookings_path, notice: "Class successfully booked for #{participants} participants."
       else
         redirect_to cooking_class_path(@cooking_class), alert: "You have already booked this class."
       end
