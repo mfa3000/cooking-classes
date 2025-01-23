@@ -11,15 +11,15 @@ export default class extends Controller {
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
-    this.#addMarkersToMap()
-    this.#fitMapToMarkers()
-
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v10"
+      style: "mapbox://styles/mfa3000/cm4u0plyg003e01r952ut7s99"
     })
+    this.#addMarkersToMap()
+    this.#fitMapToMarkers()
   }
+
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window_html) // Add this
