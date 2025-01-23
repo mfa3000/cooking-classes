@@ -77,3 +77,5 @@ end
 
 # using faker to create seed data
 gem "faker"
+
+gem "geocoder"
