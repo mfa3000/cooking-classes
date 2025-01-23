@@ -1,13 +1,28 @@
 <div class="container">
   <h1><%= @cooking_class.title%></h1>
   <p><%= @cooking_class.description%></p>
-  <p><%= @cooking_class.price%></p>
-  <p><%= @cooking_class.address%></p>
-  <p><%= @cooking_class.date%></p>
-  <p><%= @cooking_class.time%></p>
-  <p><%= @cooking_class.capacity%></p>
+  <p><strong>Price: </strong><%= @cooking_class.price%> €</p>
+  <p><strong>Address: </strong><%= @cooking_class.address%></p>
+  <p><strong>Date: </strong><%= @cooking_class.date%></p>
+  <p><strong>Time: </strong><%= @cooking_class.time%></p>
+  <p><strong>Capacity: </strong><%= @cooking_class.capacity%></p>
   <p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
 
+  <% if current_user == @cooking_class.user %>
+    <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>
+  <% else %>
+    <% if current_user.bookings.exists?(cooking_class: @cooking_class) %>
+      <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete, class: "d-inline" do %>
+        <%= submit_tag "Cancel Booking", class: "btn btn-danger" %>
+      <% end %>
+    <% elsif @cooking_class.capacity > 0 %>
+      <%= form_with url: book_cooking_class_path(@cooking_class), method: :post, class: "d-inline" do %>
+        <%= submit_tag "Book This Class", class: "btn btn-success" %>
+      <% end %>
+    <% else %>
+      <button class="btn btn-secondary" disabled>This class is fully booked</button>
+    <% end %>
+  <% end %>
 
   <%= link_to "Back to overview", cooking_classes_path, class: "btn btn-primary" %>
 </div>

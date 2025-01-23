@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :cooking_classes, only: [:index, :new, :create, :destroy, :show, :update, :edit] do
     post :book, on: :member
+    delete :cancel_booking, on: :member
   end
 
   get "/my_cooking_classes", to: "cooking_classes#my_cooking_classes", as: :my_cooking_classes
