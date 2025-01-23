@@ -1,28 +1,66 @@
-<div class="container">
-  <h1><%= @cooking_class.title%></h1>
-  <p><%= @cooking_class.description%></p>
-  <p><strong>Price: </strong><%= @cooking_class.price%> €</p>
-  <p><strong>Address: </strong><%= @cooking_class.address%></p>
-  <p><strong>Date: </strong><%= @cooking_class.date%></p>
-  <p><strong>Time: </strong><%= @cooking_class.time%></p>
-  <p><strong>Capacity: </strong><%= @cooking_class.capacity%></p>
-  <p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
+<div class="container" style="display: flex; justify-content: space-between; gap: 20px;">
 
-  <% if current_user == @cooking_class.user %>
-    <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>
-  <% else %>
-    <% if current_user.bookings.exists?(cooking_class: @cooking_class) %>
-      <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete, class: "d-inline" do %>
-        <%= submit_tag "Cancel Booking", class: "btn btn-danger" %>
-      <% end %>
-    <% elsif @cooking_class.capacity > 0 %>
-      <%= form_with url: book_cooking_class_path(@cooking_class), method: :post, class: "d-inline" do %>
-        <%= submit_tag "Book This Class", class: "btn btn-success" %>
-      <% end %>
+  <div class="details" style="flex: 2; min-width: 300px;">
+    <h1><%= @cooking_class.title%></h1>
+    <p><%= @cooking_class.description%></p>
+    <p><%= @cooking_class.price%></p>
+    <p><%= @cooking_class.address%></p>
+    <p><%= @cooking_class.date%></p>
+    <p><%= @cooking_class.time%></p>
+    <p><%= @cooking_class.capacity%></p>
+    <p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
+
+    <% if current_user == @cooking_class.user %>
+      <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>
     <% else %>
-      <button class="btn btn-secondary" disabled>This class is fully booked</button>
+      <% total_participants = @cooking_class.bookings.count %>
+      <% available_spots = @cooking_class.capacity - total_participants %>
+
+    <%= link_to "Back to overview", cooking_classes_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="booking-container" style="flex: 1; min-width: 300px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+    <% if current_user.bookings.exists?(cooking_class: @cooking_class) %>
+      <div class="alert alert-info mt-3">
+        <p>You have already booked this class.</p>
+        <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete, class: "d-inline" do %>
+          <%= submit_tag "Cancel Booking", class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    <% elsif available_spots > 0 %>
+
+      <div class="booking-container" style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+        <h4 style="text-align: center; margin-bottom: 20px;">Book this Class</h4>
+
+        <%= form_with url: book_cooking_class_path(@cooking_class), method: :post, local: true do |form| %>
+          <!--  Date -->
+          <div style="margin-bottom: 15px;">
+            <%= form.label :event_date, "Date" %>
+            <%= form.date_field :event_date %>
+          </div>
+
+          <!-- Participants -->
+          <div style="margin-bottom: 15px;">
+            <%= form.label :participants%>
+            <%= form.number_field :participants %>
+          </div>
+
+          <!--  Price -->
+          <div style="margin-bottom: 15px;">
+            <label for="total_price" style="display: block;">Total Price</label>
+            <input type="text" id="total_price" readonly value="<%= number_to_currency(@cooking_class.price, unit: '€') %>">
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <%= form.submit "Confirm Booking", style: "width: 100%; padding: 10px; background: #813531; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;" %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="alert alert-warning mt-4">
+        <p>This class is fully booked.</p>
+      </div>
     <% end %>
   <% end %>
-
-  <%= link_to "Back to overview", cooking_classes_path, class: "btn btn-primary" %>
 </div>
