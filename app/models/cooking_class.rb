@@ -10,7 +10,7 @@ class CookingClass < ApplicationRecord
   validates :capacity, numericality: { greater_than_or_equal_to: 0 }
   after_validation :geocode, if: :will_save_change_to_address?
 
-  
+
   include PgSearch::Model
 
   pg_search_scope :search_by_title_and_description,
@@ -18,6 +18,7 @@ class CookingClass < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+    
 CATEGORIES = ["Mexican", "Japanese", "Italian", "Thai", "Street Food", "Indian", "French", "Other"]
 
 validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category" }
