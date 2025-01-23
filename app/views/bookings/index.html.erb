@@ -2,15 +2,28 @@
   <h1>My Bookings</h1>
 
   <% if @bookings.any? %>
-    <ul>
+    <div class="row" id="card-container">
       <% @bookings.each do |booking| %>
-        <li>
-          <strong><%= link_to booking.cooking_class.title, cooking_class_path(booking.cooking_class) %></strong>
-          <p><%= booking.cooking_class.description %></p>
-          <p>Date: <%= booking.cooking_class.date %> | Time: <%= booking.cooking_class.time %></p>
-        </li>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card">
+            <div class="card-content">
+              <h3><%= booking.cooking_class.title %></h3>
+              <p class="description"><%= booking.cooking_class.description %></p>
+              <p class="date">
+                <strong>Date:</strong> <%= booking.cooking_class.date %>
+              </p>
+              <p class="time">
+                <strong>Time:</strong> <%= booking.cooking_class.time.strftime("%I:%M %p") %>
+              </p>
+              <a href="<%= cooking_class_path(booking.cooking_class) %>" class="btn btn-primary mt-3">See More</a>
+              <%= form_with url: cancel_booking_cooking_class_path(booking.cooking_class), method: :delete, class: "d-inline" do %>
+                <%= submit_tag "Cancel Booking", class: "btn btn-danger mt-3" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </ul>
+    </div>
   <% else %>
     <p>You have no bookings yet.</p>
   <% end %>
