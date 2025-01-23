@@ -5,6 +5,12 @@ class CookingClassesController < ApplicationController
 
   def index
     @cooking_classes = CookingClass.all
+    @markers = @cooking_classes.geocoded.map do |cooking_class|
+      {
+        lat: cooking_class.latitude,
+        lng: cooking_class.longitude,
+        # info_window_html: render_to_string(partial: "info_window", locals: {cooking_class: cooking_class})
+      }
     if params[:query].present?
     @cooking_classes = CookingClass.search_by_title_and_description(params[:query])
     end
@@ -14,7 +20,6 @@ class CookingClassesController < ApplicationController
   end
 
   def show
-    @user = "currentUser"
     total_participants = @cooking_class.bookings.sum(:participants) # Sum the participants from bookings
     @available_spots = @cooking_class.capacity - total_participants
   end
