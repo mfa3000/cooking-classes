@@ -9,16 +9,22 @@
   <p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
 
   <% if current_user == @cooking_class.user %>
-    <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>
-  <% else %>
-    <% if current_user.bookings.exists?(cooking_class: @cooking_class) %>
-      <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete, class: "d-inline" do %>
-        <%= submit_tag "Cancel Booking", class: "btn btn-danger" %>
-      <% end %>
-    <% elsif @cooking_class.capacity > 0 %>
+  <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>
+<% else %>
+  <% if user_signed_in? && current_user.bookings.exists?(cooking_class: @cooking_class) %>
+    <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete, class: "d-inline" do %>
+      <%= submit_tag "Cancel Booking", class: "btn btn-danger" %>
+    <% end %>
+  <% elsif @cooking_class.capacity > 0 %>
+    <% if user_signed_in? %>
       <%= form_with url: book_cooking_class_path(@cooking_class), method: :post, class: "d-inline" do %>
         <%= submit_tag "Book This Class", class: "btn btn-success" %>
       <% end %>
+    <% else %>
+      <p class="text-muted">
+        <%= link_to "Login", new_user_session_path, class: "text-primary" %> to book this class.
+      </p>
+    <% end %>
     <% else %>
       <button class="btn btn-secondary" disabled>This class is fully booked</button>
     <% end %>
