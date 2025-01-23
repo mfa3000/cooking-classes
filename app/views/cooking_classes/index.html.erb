@@ -1,10 +1,26 @@
 
   <!-- search bar  -->
-<div class="search-container" id="first-container">
-  <input type="text" class="search-input" placeholder="Location">
-  <input type="text" class="search-input" placeholder="Date">
-  <input type="number" class="search-input" placeholder="Guests" min="1" max="20">
-  <button class="search-button">Search</button>
+
+<div class="search-bar">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: cooking_classes_path, method: :get, class: "d-flex" do %>
+      <div class="input-group">
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Find a class by keywords" %>
+        <%= date_field_tag :start_date,
+              params[:start_date],
+              class: "form-control",
+              placeholder: "Select a starting date" %>
+        <%= date_field_tag :end_date,
+              params[:end_date],
+              class: "form-control",
+              placeholder: "Select an end date" %>
+        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <!-- Class list -->

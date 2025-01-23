@@ -1,21 +1,27 @@
 <div class="container">
-<h1>My Cooking Classes</h1>
+  <h1>My Cooking Classes</h1>
 
-<% if @cooking_classes.any? %>
-  <% @cooking_classes.each do |cooking_class| %>
-    <div class="cooking-class">
-      <h2><%= cooking_class.title %></h2>
-      <p><%= cooking_class.description %></p>
-      <p><strong>Price:</strong> $<%= cooking_class.price %></p>
-      <p><strong>Date:</strong> <%= cooking_class.date %></p>
-      <p><strong>Time:</strong> <%= cooking_class.time.strftime("%I:%M %p") %></p>
-      <%= link_to "Edit", edit_cooking_class_path(cooking_class), class: "btn btn-primary" %>
-
+  <% if @cooking_classes.any? %>
+    <div class="row" id="card-container">
+      <% @cooking_classes.each do |cooking_class| %>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card">
+            <div class="card-content">
+              <h3><%= cooking_class.title %></h3>
+              <p class="description"><%= cooking_class.description %></p>
+              <p class="price"><strong>Price:</strong> $<%= cooking_class.price %></p>
+              <p class="date"><strong>Date:</strong> <%= cooking_class.date %></p>
+              <p class="time"><strong>Time:</strong> <%= cooking_class.time.strftime("%I:%M %p") %></p>
+              <p class="bookings"><strong>Number of Bookings:</strong> <%= cooking_class.bookings.count %></p>
+              <a href="<%= edit_cooking_class_path(cooking_class) %>" class="btn btn-primary">Edit</a>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
+    <%= link_to "Create a New Cooking Class", new_cooking_class_path, class: "btn btn-success mt-4" %>
+  <% else %>
+    <p>You haven't created any cooking classes yet.</p>
+    <%= link_to "Create a New Cooking Class", new_cooking_class_path, class: "btn btn-success mt-4" %>
   <% end %>
-<% else %>
-  <p>You haven't created any cooking classes yet.</p>
-  <%= link_to "Create a New Cooking Class", new_cooking_class_path, class: "btn btn-success" %>
-<% end %>
-
 </div>

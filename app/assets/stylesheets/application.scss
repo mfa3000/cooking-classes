@@ -43,7 +43,6 @@
   color: #333;
   margin-top: 20px;
   margin-bottom: 20px;
-  // text-transform: capitalize;
   letter-spacing: 1px;
 
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
@@ -98,4 +97,60 @@ label.required::after {
   max-width: 500px;
   //margin: 0 auto; /* Center the form horizontally */
   //text-align: left; /* Align labels and inputs to the left */
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  //background-color: #ffffff;
+  //box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.input-group .form-control {
+  border-radius: 25px;
+  height: 50px;
+  padding: 0 15px;
+  font-size: 14px;
+  margin-right: 10px;
+  border: 1px solid #b2b1b1;
+  transition: all 0.3s ease;
+}
+
+.input-group .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.input-group .btn {
+  background-color: #1b253d;
+  border-radius: 25px;
+  color: white;
+  padding: 0 25px;
+  font-size: 16px;
+  height: 50px;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.input-group .btn:hover {
+  background-color: #d8a048;
+}
+
+.input-group input[type="date"] {
+  max-width: 200px;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input-group input {
+  margin-right: 10px;
 }

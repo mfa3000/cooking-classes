@@ -11,10 +11,17 @@ class CookingClassesController < ApplicationController
         lng: cooking_class.longitude,
         # info_window_html: render_to_string(partial: "info_window", locals: {cooking_class: cooking_class})
       }
+    if params[:query].present?
+    @cooking_classes = CookingClass.search_by_title_and_description(params[:query])
+    end
+    if params[:start_date].present? && params[:end_date].present?
+      @cooking_classes = @cooking_classes.where(date: params[:start_date]..params[:end_date])
     end
   end
 
   def show
+    total_participants = @cooking_class.bookings.sum(:participants) # Sum the participants from bookings
+    @available_spots = @cooking_class.capacity - total_participants
   end
 
   def new
@@ -51,11 +58,13 @@ class CookingClassesController < ApplicationController
   def edit
   end
   def book
-    if @cooking_class.capacity > 0
-      booking = current_user.bookings.new(cooking_class: @cooking_class)
+    participants = params[:participants].to_i
+
+    if @cooking_class.capacity >= participants
+      booking = current_user.bookings.new(cooking_class: @cooking_class, participants: participants)
       if booking.save
-        @cooking_class.update(capacity: @cooking_class.capacity - 1)
-        redirect_to bookings_path, notice: "Class successfully booked."
+        @cooking_class.update(capacity: @cooking_class.capacity - participants)
+        redirect_to bookings_path, notice: "Class successfully booked for #{participants} participants."
       else
         redirect_to cooking_class_path(@cooking_class), alert: "You have already booked this class."
       end
@@ -67,8 +76,9 @@ class CookingClassesController < ApplicationController
   def cancel_booking
     booking = current_user.bookings.find_by(cooking_class: @cooking_class)
     if booking
+      participants = booking.participants
       booking.destroy
-      @cooking_class.update(capacity: @cooking_class.capacity + 1)
+      @cooking_class.update(capacity: @cooking_class.capacity + participants)
       redirect_to cooking_class_path(@cooking_class), notice: "Your booking has been canceled."
     else
       redirect_to cooking_class_path(@cooking_class), alert: "You haven't booked this class."
@@ -82,7 +92,7 @@ class CookingClassesController < ApplicationController
 private
 
   def cooking_class_params
-    params.require(:cooking_class).permit(:title, :description, :price, :address, :date, :time, :capacity)
+    params.require(:cooking_class).permit(:title, :description, :price, :address, :date, :time, :capacity, :category)
   end
 
   def set_cooking_class

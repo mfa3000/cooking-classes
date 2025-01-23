@@ -4,11 +4,12 @@
     <div class="row">
       <div class="col-md-6">
         <%= f.input :title, label: "Class Title" %>
+        <%= f.input :category, as: :select, collection: CookingClass::CATEGORIES, prompt: "Select a category", label: "Category" %>
       </div>
-    <div class="col-md-6">
-    <%= f.input :description, as: :text, label: "Class Description" %>
+      <div class="col-md-6">
+        <%= f.input :description, as: :text, label: "Class Description", input_html: { rows: 4 } %>
+      </div>
     </div>
-</div>
 
     <div class="row">
       <div class="col-md-6">
