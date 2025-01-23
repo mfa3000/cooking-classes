@@ -2,13 +2,14 @@
 
   <div class="details" style="flex: 2; min-width: 300px;">
     <h1><%= @cooking_class.title%></h1>
+    <p><strong>Category:</strong> <%= @cooking_class.category %></p>
     <p><%= @cooking_class.description%></p>
-    <p><%= @cooking_class.price%></p>
-    <p><%= @cooking_class.address%></p>
-    <p><%= @cooking_class.date%></p>
-    <p><%= @cooking_class.time%></p>
-    <p><%= @cooking_class.capacity%></p>
-    <p><%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
+    <p><strong>Price:</strong> <%= @cooking_class.price%></p>
+    <p><strong>Address:</strong> <%= @cooking_class.address%></p>
+    <p><strong>Date:</strong> <%= @cooking_class.date%></p>
+    <p><strong>Time:</strong> <%= @cooking_class.time%></p>
+    <p><strong>Capacity:</strong> <%= @cooking_class.capacity%></p>
+    <p><strong>Teacher:</strong> <%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
 
     <% if current_user == @cooking_class.user %>
       <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>

@@ -80,7 +80,7 @@ class CookingClassesController < ApplicationController
 private
 
   def cooking_class_params
-    params.require(:cooking_class).permit(:title, :description, :price, :address, :date, :time, :capacity)
+    params.require(:cooking_class).permit(:title, :description, :price, :address, :date, :time, :capacity, :category)
   end
 
   def set_cooking_class
@@ -93,6 +93,4 @@ private
       redirect_to cooking_classes_path, alert: "You are not authorized to delete this class."
     end
   end
-
-
 end

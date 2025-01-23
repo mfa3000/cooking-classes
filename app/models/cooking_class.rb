@@ -6,4 +6,8 @@ class CookingClass < ApplicationRecord
 
   validates :title, :description, :price, :address, :date, :time, :capacity, presence: true
   validates :capacity, numericality: { greater_than_or_equal_to: 0 }
+
+  CATEGORIES = ["Mexican", "Japanese", "Italian", "Thai", "Street Food", "Indian", "French", "Other"]
+
+  validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category" }
 end
