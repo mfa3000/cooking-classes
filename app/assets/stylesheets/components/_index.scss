@@ -31,23 +31,52 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 15px;
+  overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
-  height: 350px;
+  height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .card-content {
-  flex-grow: 1;
+  padding: 15px;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   justify-content: space-between;
 }
 
-.card-content p {
+.card-content .location,
+.card-content .duration {
   font-size: 14px;
-  margin-bottom: 8px;
+  color: #666;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.card-content .location i,
+.card-content .duration i {
+  margin-right: 5px;
+  color: #982121;
 }
 
 .price {
@@ -59,14 +88,26 @@
 .card-content a {
   font-size: 14px;
   padding: 10px 20px;
-  background-color: #982121;
+  background-color: #D8572A;
   text-align: center;
   border-radius: 4px;
+  color: white;
+  text-decoration: none;
   margin-top: auto;
+  transition: background-color 0.3s;
 }
 
 .card-content a:hover {
   background-color: #813531;
+}
+
+.a {
+  text-decoration: underline;
+  color: #D8572A;
+}
+
+a:hover {
+  color: #C32F27;
 }
 
 #first-container {
