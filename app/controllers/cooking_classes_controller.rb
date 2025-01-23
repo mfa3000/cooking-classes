@@ -22,6 +22,9 @@ class CookingClassesController < ApplicationController
     if params[:start_date].present? && params[:end_date].present?
       @cooking_classes = @cooking_classes.where(date: params[:start_date]..params[:end_date])
     end
+    if params[:location].present?
+      @cooking_classes = @cooking_classes.near(params[:location], 10)
+    end
   end
 
 
