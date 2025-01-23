@@ -11,6 +11,7 @@ class CookingClassesController < ApplicationController
         lng: cooking_class.longitude,
         # info_window_html: render_to_string(partial: "info_window", locals: {cooking_class: cooking_class})
       }
+    end
     if params[:query].present?
     @cooking_classes = CookingClass.search_by_title_and_description(params[:query])
     end
@@ -18,6 +19,7 @@ class CookingClassesController < ApplicationController
       @cooking_classes = @cooking_classes.where(date: params[:start_date]..params[:end_date])
     end
   end
+
 
   def show
     total_participants = @cooking_class.bookings.sum(:participants) # Sum the participants from bookings
