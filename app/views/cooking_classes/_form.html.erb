@@ -37,12 +37,11 @@
       </div>
     </div>
   <div class="form-group">
-  <%if @cooking_class.title == nil%>
-    <%= f.button :submit, "Create Class", class: "btn btn-primary" %>
-  <%else%>
-    <%= f.button :submit, "Save changes", class: "btn btn-primary" %>
+    <%= f.button :submit, @cooking_class.new_record? ? "Create Class" : "Save Changes", class: "btn btn-primary" %>
 
-  <%end%>
+    <% unless @cooking_class.new_record? %>
+        <%= button_to "Delete", @cooking_class, method: :delete, class: "btn btn-danger", data: { turbo: "false", turbo_confirm: "Are you sure you want to delete this class?" } %>
+    <% end %>
   </div>
 </div>
 <% end %>
