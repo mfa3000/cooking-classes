@@ -1,0 +1,41 @@
+.btn {
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+  margin-top: auto;
+  transition: background-color 0.3s, transform 0.2s;
+  border: 1px solid black;
+
+  &:hover {
+    background-color: darken($background-color, 10%);
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.btn-delete-cancel {
+  background-color: #D8572A;
+}
+
+.btn-create-edit {
+  background-color: #257f31;
+}
+
+.btn-back-overview {
+  background-color: hsl(208, 62%, 32%);
+}
+
+.btn-login {
+  background-color: hsl(208, 62%, 32%);
+  font-weight: bold;
+}
+
+.btn-block {
+  display: block; // Makes the button span the full width
+  width: 100%;
+}

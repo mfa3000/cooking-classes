@@ -14,15 +14,15 @@
               <p class="date"><strong>Date:</strong> <%= cooking_class.date %></p>
               <p class="time"><strong>Time:</strong> <%= cooking_class.time.strftime("%I:%M %p") %></p>
               <p class="bookings"><strong>Number of Bookings:</strong> <%= cooking_class.bookings.count %></p>
-              <a href="<%= edit_cooking_class_path(cooking_class) %>" class="btn btn-primary">Edit</a>
+              <a href="<%= edit_cooking_class_path(cooking_class) %>" class="btn btn-create-edit">Edit</a>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-    <%= link_to "Create a New Cooking Class", new_cooking_class_path, class: "btn btn-success mt-4" %>
+    <%= link_to "Create a New Cooking Class", new_cooking_class_path, class: "btn btn-create-edit mt-4" %>
   <% else %>
     <p>You haven't created any cooking classes yet.</p>
-    <%= link_to "Create a New Cooking Class", new_cooking_class_path, class: "btn btn-success mt-4" %>
+    <%= link_to "Create a New Cooking Class", new_cooking_class_path, class: "btn btn-create-edit mt-4" %>
   <% end %>
 </div>
