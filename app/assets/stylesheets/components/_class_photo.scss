@@ -1,7 +1,9 @@
 .class-photo img {
   width: 100%;
+  max-height: 300px;
   height: auto;
   display: block;
   object-fit: cover;
+  border-radius: 15px;
   margin-bottom: 20px;
 }
