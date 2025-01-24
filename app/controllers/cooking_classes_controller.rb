@@ -29,7 +29,7 @@ class CookingClassesController < ApplicationController
 
 
   def show
-    total_participants = @cooking_class.bookings.sum(:participants) # Sum the participants from bookings
+    total_participants = @cooking_class.bookings.sum(:participants)
     @available_spots = @cooking_class.capacity - total_participants
   end
 
