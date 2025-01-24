@@ -2,6 +2,7 @@
   padding: 20px; /* Add padding around the page for better spacing */
 
   .title-bar {
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -41,10 +42,11 @@
 
   .container {
     display: flex;
+    width: 100%;
     justify-content: space-between;
-    align-items: flex-start; /* Align content to the top */
+    align-items: flex-start;
     gap: 20px;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    flex-wrap: wrap;
   }
 
   .details {
