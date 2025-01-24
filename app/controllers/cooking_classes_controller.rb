@@ -22,7 +22,7 @@ class CookingClassesController < ApplicationController
       {
         lat: cooking_class.latitude,
         lng: cooking_class.longitude,
-        # info_window_html: render_to_string(partial: "info_window", locals: {cooking_class: cooking_class})
+        info_window_html: render_to_string(partial: "info_window", locals: {cooking_class: cooking_class})
       }
     end
   end
