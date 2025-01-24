@@ -17,7 +17,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
           <div class="card">
             <% if cooking_class.photo.attached? %>
-              <%= image_tag cooking_class.photo, alt: cooking_class.title, class: "img-fluid" %>
+              <%= image_tag cooking_class.photo, alt: cooking_class.title, class: "img-fluid card-image" %>
             <% end %>
             <div class="card-content">
               <h3 class="card-title"><%= booking.cooking_class.title %></h3>
