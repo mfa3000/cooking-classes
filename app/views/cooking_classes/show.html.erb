@@ -2,7 +2,7 @@
   <div class="container">
     <div class="title-bar">
       <h1><%= @cooking_class.title %></h1>
-      <%= link_to "Back to Overview", cooking_classes_path, class: "btn btn-secondary" %>
+      <%= link_to "Back to Overview", cooking_classes_path, class: "btn btn-secondary", style: "margin-left: auto !important;" %>
     </div>
 
     <% if @cooking_class.photo.attached? %>
