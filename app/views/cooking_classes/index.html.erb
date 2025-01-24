@@ -6,14 +6,19 @@
       <div class="col-sm-8 my-3">
         <%= form_with url: cooking_classes_path, method: :get, class: "d-flex" do %>
           <div class="input-group">
+            <%= text_field_tag :location,
+            params[:location],
+            class: "form-control",
+            id: "location-input",
+            placeholder: "Location" %>
             <%= text_field_tag :query,
                   params[:query],
                   class: "form-control",
-                  placeholder: "Find a class by keywords" %>
+                  placeholder: "Keyword" %>
             <%= select_tag :category,
                 options_for_select(["All"] + CookingClass::CATEGORIES, params[:category]),
                 class: "form-control",
-                prompt: "Select Category" %>
+                prompt: "Category" %>
             <%= date_field_tag :start_date,
                   params[:start_date],
                   class: "form-control",
