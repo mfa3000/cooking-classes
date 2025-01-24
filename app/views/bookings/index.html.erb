@@ -13,7 +13,9 @@
       <% @bookings.each do |booking| %>
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
           <div class="card">
-          <img src="<%= asset_path('Ramen-japonais.jpg') %>" alt="<%= booking.cooking_class.title %>" class="card-img-top">
+            <% if cooking_class.photo.attached? %>
+              <%= image_tag cooking_class.photo, alt: cooking_class.title, class: "img-fluid" %>
+            <% end %>
             <div class="card-content">
               <h3 class="card-title"><%= booking.cooking_class.title %></h3>
               <p class="description"><%= booking.cooking_class.description %></p>
