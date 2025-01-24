@@ -1,8 +1,8 @@
 <div class="cooking-class-show">
   <div class="container">
-    <div class="title-bar">
-      <h1><%= @cooking_class.title %></h1>
-      <%= link_to "Back to Overview", cooking_classes_path, class: "btn btn-secondary", style: "margin-left: auto !important;" %>
+    <div class="title-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h1 style="margin: 0;"><%= @cooking_class.title %></h1>
+      <%= link_to "Back to Overview", cooking_classes_path, class: "btn btn-back-overview", style: "text-decoration: none;" %>
     </div>
 
     <% if @cooking_class.photo.attached? %>
@@ -24,7 +24,7 @@
       <p><strong>Chef:</strong> <%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
 
       <% if current_user == @cooking_class.user %>
-        <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>
+        <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-create-edit" %>
       <% end %>
     </div>
 
@@ -32,8 +32,10 @@
       <% if user_signed_in? && current_user.bookings.exists?(cooking_class: @cooking_class) %>
         <div class="alert alert-info">
           <p>You have already booked this class.</p>
-          <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete do %>
-            <%= submit_tag "Cancel Booking", class: "btn btn-danger" %>
+
+          <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete, class: "d-inline" do %>
+            <%= submit_tag "Cancel Booking", class: "btn btn-delete-cancel" %>
+
           <% end %>
         </div>
       <% elsif @available_spots > 0 %>
@@ -56,7 +58,7 @@
               <% if user_signed_in? %>
                 <%= form.submit "Confirm Booking", class: "btn" %>
               <% else %>
-                <%= link_to "Login to Book", new_user_session_path, class: "btn btn-primary" %>
+                <%= link_to "Login to Book", new_user_session_path, class: "btn btn-login" %>
               <% end %>
           <% end %>
       <% else %>
