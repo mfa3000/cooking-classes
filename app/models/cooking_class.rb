@@ -23,4 +23,6 @@ class CookingClass < ApplicationRecord
 CATEGORIES = ["Mexican", "Japanese", "Italian", "Thai", "Street Food", "Indian", "French", "Other"]
 
 validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category" }
+
+
 end
