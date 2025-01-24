@@ -2,6 +2,11 @@
 
   <div class="details" style="flex: 2; min-width: 300px;">
     <h1><%= @cooking_class.title%></h1>
+
+    <% if @cooking_class.photo.attached? %>
+      <%= image_tag @cooking_class.photo, class: "img-fluid", alt: @cooking_class.title %>
+    <% end %>
+
     <p><strong>Category:</strong> <%= @cooking_class.category %></p>
     <p><%= @cooking_class.description%></p>
     <p><strong>Price:</strong> <%= @cooking_class.price%></p>
