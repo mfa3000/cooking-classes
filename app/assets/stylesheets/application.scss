@@ -18,6 +18,10 @@
 @import "components/class_photo";
 @import "components/pages";
 @import 'components/buttons';
+@import "components/index";
+@import "components/variables"; 
+
+
 
 
 body {
@@ -147,4 +151,3 @@ label.required::after {
 // #map-index {
 //   position: sticky;
 // }
-
