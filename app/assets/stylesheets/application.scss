@@ -19,6 +19,7 @@
 @import "components/pages";
 @import 'components/buttons';
 
+
 body {
   background-color: #f6f2f2 !important;
 }
@@ -31,8 +32,8 @@ body {
 }
 
 .btn-primary {
-  background-color: #1b253d;
-  border-color: #1b253d;
+  background-color: #D8572A;
+  border-color: #D8572A;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
@@ -45,20 +46,6 @@ body {
 
 .form-group {
   margin-bottom: 20px;
-}
-
-.page-title {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: left;
-  color: #333;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-
-  position: relative;
 }
 
 label {
@@ -106,9 +93,9 @@ label.required::after {
 
 .form-container {
   max-width: 500px;
-  //margin: 0 auto; /* Center the form horizontally */
-  //text-align: left; /* Align labels and inputs to the left */
+
 }
+/* Search BAR */
 
 .search-bar {
   display: flex;
@@ -118,53 +105,10 @@ label.required::after {
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
-  //background-color: #ffffff;
-  //box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.input-group .form-control {
-  border-radius: 25px;
-  height: 50px;
-  padding: 0 15px;
-  font-size: 14px;
-  margin-right: 0px;
-  border: 1px solid #b2b1b1;
-  transition: all 0.3s ease;
-}
 
-.input-group .form-control:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
-.input-group .btn {
-  background-color: #1b253d;
-  border-radius: 25px;
-  color: white;
-  padding: 0 15px;
-  font-size: 16px;
-  height: 50px;
-  transition: all 0.3s ease;
-  border: none;
-}
-
-.input-group .btn:hover {
-  background-color: #d8a048;
-}
-
-.input-group input[type="date"] {
-  max-width: 150px;
-}
-
-.input-group {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.input-group input {
-  margin-right: 10px;
-}
+/* Footer */
 
 .footer {
   background-color: $orange;
@@ -203,3 +147,4 @@ label.required::after {
 // #map-index {
 //   position: sticky;
 // }
+

@@ -1,4 +1,6 @@
 <div class="container">
+
+  <h1>My Cooking Classes</h1>
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h1>My Cooking Classes</h1>
     <%= link_to "Create a New Cooking Class", new_cooking_class_path, class: "btn btn-create-edit" %>
@@ -10,8 +12,9 @@
       <% @cooking_classes.each do |cooking_class| %>
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
           <div class="card">
+          <img src="<%= asset_path('Ramen-japonais.jpg') %>" alt="<%= cooking_class.title %>" class="card-img-top">
             <div class="card-content">
-              <h3><%= cooking_class.title %></h3>
+              <h3 class="card-title"><%= cooking_class.title %></h3>
               <p class="description"><%= cooking_class.description %></p>
               <p class="price"><strong>Price:</strong> $<%= cooking_class.price %></p>
               <p class="date"><strong>Date:</strong> <%= cooking_class.date %></p>
