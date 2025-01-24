@@ -2,7 +2,7 @@
   <div class="container">
     <div class="title-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
       <h1 style="margin: 0;"><%= @cooking_class.title %></h1>
-      <%= link_to "Back to Overview", cooking_classes_path, class: "btn btn-back-overview", style: "text-decoration: none;" %>
+      <%= link_to "Back to Classes", cooking_classes_path, class: "btn btn-back-overview", style: "text-decoration: none;" %>
     </div>
 
     <% if @cooking_class.photo.attached? %>
@@ -50,13 +50,13 @@
 
             <!--  Price -->
             <div>
-              <label for="total_price">Total Price</label>
+              <label for="total_price">Price Per Participant</label>
               <input type="text" id="total_price" readonly value="<%= number_to_currency(@cooking_class.price, unit: '€') %>">
             </div>
 
             <!-- Submit Button -->
               <% if user_signed_in? %>
-                <%= form.submit "Confirm Booking", class: "btn" %>
+                <%= form.submit "Confirm Booking", class: "btn btn-book" %>
               <% else %>
                 <%= link_to "Login to Book", new_user_session_path, class: "btn btn-login" %>
               <% end %>
