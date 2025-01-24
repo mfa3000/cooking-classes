@@ -1,6 +1,7 @@
 
   <!-- search bar  -->
 <div class="banner">
+  <h2 class="page-title">Find the perfect cooking class</h1>
   <div class="container banner-container">
     <div class="search-bar">
       <div class="col-sm-8 my-3">
@@ -45,7 +46,9 @@
     <% @cooking_classes.each do |cooking_class| %>
       <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
         <div class="card">
-        <img src="<%= asset_path('Ramen-japonais.jpg') %>" alt="<%= cooking_class.title %>" class="card-img-top">
+          <% if cooking_class.photo.attached? %>
+            <%= image_tag cooking_class.photo, alt: cooking_class.title, class: "img-fluid" %>
+          <% end %>
           <div class="card-content">
             <h3><%= cooking_class.title.truncate(30) %></h3>
             <% city = cooking_class.address.split(',').last.strip %>
