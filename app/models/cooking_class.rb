@@ -20,7 +20,16 @@ class CookingClass < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-CATEGORIES = ["Mexican", "Japanese", "Italian", "Thai", "Street Food", "Indian", "French", "Other"]
+CATEGORIES = [
+  "Mexican 🌮",
+  "Japanese 🍣",
+  "Italian 🍝",
+  "Thai 🍲",
+  "Street Food 🌯",
+  "Indian 🍛",
+  "French 🥖",
+  "Other 🥣"
+]
 
 validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category" }
 
