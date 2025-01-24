@@ -13,16 +13,22 @@ class CookingClassesController < ApplicationController
       }
     end
     if params[:query].present?
-    @cooking_classes = CookingClass.search_by_title_and_description(params[:query])
+      @cooking_classes = CookingClass.search_by_title_and_description(params[:query])
+    end
+    if params[:category].present? && params[:category] != "All"
+      @cooking_classes = @cooking_classes.where(category: params[:category])
     end
     if params[:start_date].present? && params[:end_date].present?
       @cooking_classes = @cooking_classes.where(date: params[:start_date]..params[:end_date])
+    end
+    if params[:location].present?
+      @cooking_classes = @cooking_classes.near(params[:location], 10)
     end
   end
 
 
   def show
-    total_participants = @cooking_class.bookings.sum(:participants) # Sum the participants from bookings
+    total_participants = @cooking_class.bookings.sum(:participants)
     @available_spots = @cooking_class.capacity - total_participants
   end
 
@@ -94,7 +100,7 @@ class CookingClassesController < ApplicationController
 private
 
   def cooking_class_params
-    params.require(:cooking_class).permit(:title, :description, :price, :address, :date, :time, :capacity, :category)
+    params.require(:cooking_class).permit(:title, :description, :price, :address, :date, :time, :capacity, :category, :photo)
   end
 
   def set_cooking_class

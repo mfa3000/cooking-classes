@@ -1,5 +1,6 @@
 class CookingClass < ApplicationRecord
   belongs_to :user
+  has_one_attached :photo
   geocoded_by :address
 
 
@@ -18,6 +19,7 @@ class CookingClass < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
 CATEGORIES = ["Mexican", "Japanese", "Italian", "Thai", "Street Food", "Indian", "French", "Other"]
 
 validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category" }
