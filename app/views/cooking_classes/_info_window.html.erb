@@ -1,2 +1,2 @@
 <h2><%= cooking_class.title %></h2>
-<p><%= cooking_class.price %></p>
+<p><%= number_to_currency(cooking_class.price, unit: '€', delimeter: ',', separator: '.') %></p>
