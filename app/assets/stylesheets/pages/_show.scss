@@ -12,30 +12,30 @@
       margin: 0;
       font-size: 2.5rem;
       font-weight: bold;
-      color: #333;
+      color: $dark-gray;
     }
 
     a {
       text-decoration: none;
       padding: 10px 15px;
-      background-color: #6c757d;
+      background-color: $red;
       color: white;
       border-radius: 5px;
       font-size: 0.9rem;
 
       &:hover {
-        background-color: #5a636b;
+        background-color: $orange;
       }
     }
   }
 
   .class-photo {
-    width: 100%; /* Ensure the container spans the full width */
-    margin-bottom: 20px; /* Add spacing below the image */
+    width: 100%;
+    margin-bottom: 20px;
 
     img {
-      width: 100%; /* Ensure the image spans the full width */
-      height: auto; /* Maintain aspect ratio */
+      width: 100%;
+      height: auto;
       border-radius: 8px;
     }
   }
@@ -51,15 +51,21 @@
 
   .details {
     flex: 2;
-    min-width: 60%; /* Adjust for responsive layout */
+    min-width: 60%;
     padding: 20px;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+
+    .description {
+      font-size: 1.1rem;
+    }
 
     p {
       margin: 10px 0;
+      font-size: 14px;
 
       strong {
         font-weight: bold;
@@ -76,14 +82,14 @@
       display: inline-block;
       margin-top: 15px;
       padding: 10px 20px;
-      background-color: #813531;
+      background-color: $red;
       color: white;
       border-radius: 5px;
       text-decoration: none;
       text-align: center;
 
       &:hover {
-        background-color: #6c2b29;
+        background-color: $orange;
       }
     }
   }
@@ -91,7 +97,7 @@
   .booking-container {
     flex: 1;
     min-width: 300px;
-    max-width: 400px; /* Limit width for form */
+    max-width: 400px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -102,7 +108,7 @@
       text-align: center;
       margin-bottom: 20px;
       font-size: 1.5rem;
-      color: #333;
+      color: $dark-gray;
     }
 
     label {
@@ -125,7 +131,7 @@
 
     input[readonly] {
       background-color: #e9ecef;
-      color: #495057;
+      color: $dark-gray;
       font-weight: bold;
     }
 
@@ -133,7 +139,7 @@
       display: block;
       width: 100%;
       padding: 10px;
-      background: #813531;
+      background: $red;
       color: white;
       border: none;
       border-radius: 4px;
@@ -142,7 +148,7 @@
       text-align: center;
 
       &:hover {
-        background: #6c2b29;
+        background: $orange;
       }
     }
 

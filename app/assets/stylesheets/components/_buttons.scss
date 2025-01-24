@@ -8,18 +8,20 @@
   transition: background-color 0.3s, transform 0.2s;
   border: 1px solid black;
 
-  &:hover {
-    background-color: darken($background-color, 10%);
-    transform: scale(1.02);
-  }
-
   &:active {
     transform: scale(0.98);
   }
 }
 
 .btn-delete-cancel {
-  background-color: #D8572A;
+  background-color: #ffffff;
+  color: $orange ;
+  border-color: $orange;
+&:hover {
+  transform: scale(1.02);
+  background-color: $orange ;
+  color: #ffffff;
+}
 }
 
 .btn-book {
@@ -27,7 +29,8 @@
 }
 
 .btn-create-edit {
-  background-color: #257f31;
+  background-color: $orange;
+  border: none;
 }
 
 .btn-back-overview {
