@@ -12,6 +12,13 @@
 @import "components/index";
 @import "pages/index";
 @import "components/banner";
+@import "components/profile_drop_down";
+@import "components/typography";
+@import "components/class_photo";
+
+body {
+  background-color: #f6f2f2 !important;
+}
 
 .form-control {
   border-radius: 8px;
@@ -104,7 +111,7 @@ label.required::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
@@ -117,7 +124,7 @@ label.required::after {
   height: 50px;
   padding: 0 15px;
   font-size: 14px;
-  margin-right: 10px;
+  margin-right: 0px;
   border: 1px solid #b2b1b1;
   transition: all 0.3s ease;
 }
@@ -131,7 +138,7 @@ label.required::after {
   background-color: #1b253d;
   border-radius: 25px;
   color: white;
-  padding: 0 25px;
+  padding: 0 15px;
   font-size: 16px;
   height: 50px;
   transition: all 0.3s ease;
@@ -143,7 +150,7 @@ label.required::after {
 }
 
 .input-group input[type="date"] {
-  max-width: 200px;
+  max-width: 150px;
 }
 
 .input-group {

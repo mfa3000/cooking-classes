@@ -1,60 +1,71 @@
-<div class="container" style="display: flex; justify-content: space-between; gap: 20px;">
+<div class="cooking-class-show">
+  <div class="container">
+    <div class="title-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h1 style="margin: 0;"><%= @cooking_class.title %></h1>
+      <%= link_to "Back to Overview", cooking_classes_path, class: "btn btn-secondary", style: "text-decoration: none;" %>
+    </div>
 
-  <div class="details" style="flex: 2; min-width: 300px;">
-    <h1><%= @cooking_class.title%></h1>
-    <p><strong>Category:</strong> <%= @cooking_class.category %></p>
-    <p><%= @cooking_class.description%></p>
-    <p><strong>Price:</strong> <%= @cooking_class.price%></p>
-    <p><strong>Address:</strong> <%= @cooking_class.address%></p>
-    <p><strong>Date:</strong> <%= @cooking_class.date%></p>
-    <p><strong>Time:</strong> <%= @cooking_class.time%></p>
-    <p><strong>Capacity:</strong> <%= @cooking_class.capacity%></p>
-    <p><strong>Teacher:</strong> <%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
-
-    <% if current_user == @cooking_class.user %>
-      <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>
+    <% if @cooking_class.photo.attached? %>
+      <div class="class-photo">
+        <%= image_tag @cooking_class.photo, alt: @cooking_class.title, class: "img-fluid" %>
+      </div>
     <% end %>
-
-    <%= link_to "Back to overview", cooking_classes_path, class: "btn btn-primary" %>
   </div>
 
-  <div class="booking-container" style="flex: 1; min-width: 300px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
-    <% if user_signed_in? && current_user.bookings.exists?(cooking_class: @cooking_class) %>
-      <div class="alert alert-info mt-3">
-        <p>You have already booked this class.</p>
-        <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete, class: "d-inline" do %>
-          <%= submit_tag "Cancel Booking", class: "btn btn-danger" %>
-        <% end %>
-      </div>
-    <% elsif @available_spots > 0 %>
+  <div class="container" style="display: flex; justify-content: space-between; gap: 20px;">
+    <div class="details" style="flex: 2; min-width: 300px;">
+      <p><strong>Category:</strong> <%= @cooking_class.category %></p>
+      <p><%= @cooking_class.description%></p>
+      <p><strong>Price:</strong> <%= @cooking_class.price%></p>
+      <p><strong>Address:</strong> <%= @cooking_class.address%></p>
+      <p><strong>Date:</strong> <%= @cooking_class.date%></p>
+      <p><strong>Time:</strong> <%= @cooking_class.time.strftime("%H:%M %Z") %></p>
+      <p><strong>Capacity:</strong> <%= @cooking_class.capacity%></p>
+      <p><strong>Teacher:</strong> <%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
 
-      <div class="booking-container" style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
-        <h4 style="text-align: center; margin-bottom: 20px;">Book this Class</h4>
+      <% if current_user == @cooking_class.user %>
+        <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>
+      <% end %>
+    </div>
 
-        <%= form_with url: book_cooking_class_path(@cooking_class), method: :post, local: true do |form| %>
-          <!-- Participants -->
-          <div style="margin-bottom: 15px;">
-            <%= form.label :participants%>
-            <%= form.number_field :participants, value: 1, min: 1, max: @cooking_class.capacity, class: "form-control" %>
-          </div>
+    <div class="booking-container" style="flex: 1; min-width: 300px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+      <% if user_signed_in? && current_user.bookings.exists?(cooking_class: @cooking_class) %>
+        <div class="alert alert-info mt-3">
+          <p>You have already booked this class.</p>
+          <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete, class: "d-inline" do %>
+            <%= submit_tag "Cancel Booking", class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      <% elsif @available_spots > 0 %>
 
-          <!--  Price -->
-          <div style="margin-bottom: 15px;">
-            <label for="total_price" style="display: block;">Total Price</label>
-            <input type="text" id="total_price" readonly value="<%= number_to_currency(@cooking_class.price, unit: '€') %>">
-          </div>
+        <div class="booking-container" style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+          <h4 style="text-align: center; margin-bottom: 20px;">Book this Class</h4>
 
-          <!-- Submit Button -->
-            <% if user_signed_in? %>
-              <%= form.submit "Confirm Booking", style: "width: 100%; padding: 10px; background: #813531; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;" %>
-            <% else %>
-              <%= link_to "Login to Book", new_user_session_path, class: "btn btn-primary" %>
-            <% end %>
-        <% end %>
-    <% else %>
-      <div class="alert alert-warning mt-4">
-        <p>This class is fully booked.</p>
-      </div>
-    <% end %>
+          <%= form_with url: book_cooking_class_path(@cooking_class), method: :post, local: true do |form| %>
+            <!-- Participants -->
+            <div style="margin-bottom: 15px;">
+              <%= form.label :participants%>
+              <%= form.number_field :participants, value: 1, min: 1, max: @cooking_class.capacity, class: "form-control" %>
+            </div>
+
+            <!--  Price -->
+            <div style="margin-bottom: 15px;">
+              <label for="total_price" style="display: block;">Total Price</label>
+              <input type="text" id="total_price" readonly value="<%= number_to_currency(@cooking_class.price, unit: '€') %>">
+            </div>
+
+            <!-- Submit Button -->
+              <% if user_signed_in? %>
+                <%= form.submit "Confirm Booking", style: "width: 100%; padding: 10px; background: #813531; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;" %>
+              <% else %>
+                <%= link_to "Login to Book", new_user_session_path, class: "btn btn-primary" %>
+              <% end %>
+          <% end %>
+      <% else %>
+        <div class="alert alert-warning mt-4">
+          <p>This class is fully booked.</p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

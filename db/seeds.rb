@@ -32,7 +32,7 @@ puts "creating fake data for cooking classes"
 # Create fake cooking classes
 categories = ["Mexican", "Japanese", "Italian", "Thai", "Street Food", "Indian", "French", "Other"]
 
-20.times do
+16.times do
   ethnic_category = Faker::Food.ethnic_category
   category = categories.include?(ethnic_category) ? ethnic_category : "Other"
 
