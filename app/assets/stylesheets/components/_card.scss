@@ -1,21 +1,3 @@
-// Import your components CSS files here.
-@import "alert";
-@import "avatar";
-@import "form_legend_clear";
-@import "navbar";
-
-
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-body {
-  font-family: $h1-font;
-  font-size: 14px;
-  color: #333;
-  line-height: 1.6;
-}
 
 .card {
   background-color: white;
@@ -96,17 +78,4 @@ body {
 
 a:hover {
   color: #C32F27;
-}
-
-#first-container {
-  margin-bottom: 40px;
-}
-
-.mapboxgl-popup {
-  max-width: 200px;
-}
-
-.mapboxgl-popup-content {
-  text-align: center;
-  font-family: "Open Sans", sans-serif;
 }
