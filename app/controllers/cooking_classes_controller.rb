@@ -29,7 +29,7 @@ class CookingClassesController < ApplicationController
 
 
   def show
-    total_participants = @cooking_class.bookings.sum(:participants) # Sum the participants from bookings
+    total_participants = @cooking_class.bookings.sum(:participants)
     @available_spots = @cooking_class.capacity - total_participants
   end
 
@@ -101,7 +101,7 @@ class CookingClassesController < ApplicationController
 private
 
   def cooking_class_params
-    params.require(:cooking_class).permit(:title, :description, :price, :address, :date, :time, :capacity, :category)
+    params.require(:cooking_class).permit(:title, :description, :price, :address, :date, :time, :capacity, :category, :photo)
   end
 
   def set_cooking_class
