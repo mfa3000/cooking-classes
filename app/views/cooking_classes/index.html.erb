@@ -35,7 +35,7 @@
             <% city = cooking_class.address.split(',').last.strip %>
             <p class="location"><i class="fas fa-map-marker-alt"></i> <%= city %></p>
             <p class="date"><%= cooking_class.date.strftime('%d %b') %></p>
-            <p class="description"><%= cooking_class.description %></p>
+            <!--p class="description"><%= cooking_class.description %></p-->
             <p class="price">
               <strong><%= number_to_currency(cooking_class.price, unit: "€") %></strong> per person
             </p>

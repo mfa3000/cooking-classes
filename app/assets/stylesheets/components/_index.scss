@@ -27,6 +27,20 @@
   flex: 1;
 }
 
+
+body {
+  font-family: $body-font;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headers-font;
+  font-weight: bold;
+  color: #111;
+  margin: 0.5em 0;
+}
+
 .card {
   background-color: white;
   border-radius: 10px;
@@ -50,8 +64,7 @@
 }
 
 .card-title {
-  font-size: 10px;
-  font-weight: bold;
+  font-size: 9px;
   margin-bottom: 10px;
   color: #333;
 }
@@ -76,7 +89,7 @@
 .card-content .location i,
 .card-content .duration i {
   margin-right: 5px;
-  color: #982121;
+  color: #090909;
 }
 
 .price {
@@ -86,7 +99,6 @@
 }
 
 .card-content a {
-  font-size: 14px;
   padding: 10px 20px;
   background-color: #D8572A;
   text-align: center;
