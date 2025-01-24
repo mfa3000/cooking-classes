@@ -2,10 +2,11 @@
   padding: 20px; /* Add padding around the page for better spacing */
 
   .title-bar {
-    // display: flex;
-    // align-items: center;
-    // justify-content: space-between;
-   //  margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
 
     h1 {
       margin: 0;
