@@ -16,6 +16,7 @@
 @import "components/profile_drop_down";
 @import "components/typography";
 @import "components/class_photo";
+@import "components/pages";
 
 body {
   background-color: #f6f2f2 !important;
@@ -198,3 +199,6 @@ label.required::after {
   color: #e74c3c;
 }
 
+// #map-index {
+//   position: sticky;
+// }
