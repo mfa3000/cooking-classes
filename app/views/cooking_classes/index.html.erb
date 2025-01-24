@@ -14,7 +14,7 @@
             <%= text_field_tag :query,
                   params[:query],
                   class: "form-control",
-                  placeholder: "Keywords" %>
+                  placeholder: "Keyword" %>
             <%= select_tag :category,
                 options_for_select(["All"] + CookingClass::CATEGORIES, params[:category]),
                 class: "form-control",
