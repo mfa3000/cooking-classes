@@ -1,5 +1,12 @@
 <div class="container">
   <h1>My Bookings</h1>
+  <p class="page-description">
+    <% if @bookings.any? %>
+      You've got <%= @bookings.count %> classes lined up—time to sharpen your skills and satisfy your taste buds!
+    <% else %>
+      No classes booked yet? Explore the menu of exciting options and dive into the world of cooking!
+    <% end %>
+  </p>
 
   <% if @bookings.any? %>
     <div class="row" id="card-container">
@@ -17,7 +24,7 @@
               </p>
               <a href="<%= cooking_class_path(booking.cooking_class) %>" class="btn btn-primary mt-3">See More</a>
               <%= form_with url: cancel_booking_cooking_class_path(booking.cooking_class), method: :delete, class: "d-inline" do %>
-                <%= submit_tag "Cancel Booking", class: "btn btn-danger mt-3" %>
+                <%= submit_tag "Cancel Booking", class: "btn btn-delete-cancel mt-3 btn-block" %>
               <% end %>
             </div>
           </div>
