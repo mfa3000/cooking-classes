@@ -1,5 +1,12 @@
 <div class="container">
   <h1>My Bookings</h1>
+  <p class="page-description">
+    <% if @bookings.any? %>
+      You've got <%= @bookings.count %> classes lined up—time to sharpen your skills and satisfy your taste buds!
+    <% else %>
+      No classes booked yet? Explore the menu of exciting options and dive into the world of cooking!
+    <% end %>
+  </p>
 
   <% if @bookings.any? %>
     <div class="row" id="card-container">
