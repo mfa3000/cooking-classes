@@ -2,7 +2,7 @@
   <div class="container">
     <div class="title-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
       <h1 style="margin: 0;"><%= @cooking_class.title %></h1>
-      <%= link_to "Back to Overview", cooking_classes_path, class: "btn btn-secondary", style: "text-decoration: none;" %>
+      <%= link_to "Back to Overview", cooking_classes_path, class: "btn btn-back-overview", style: "text-decoration: none;" %>
     </div>
 
     <% if @cooking_class.photo.attached? %>
@@ -12,8 +12,8 @@
     <% end %>
   </div>
 
-  <div class="container" style="display: flex; justify-content: space-between; gap: 20px;">
-    <div class="details" style="flex: 2; min-width: 300px;">
+  <div class="container">
+    <div class="details">
       <p><strong>Category:</strong> <%= @cooking_class.category %></p>
       <p><%= @cooking_class.description%></p>
       <p><strong>Price:</strong> <%= @cooking_class.price%></p>
@@ -21,26 +21,26 @@
       <p><strong>Date:</strong> <%= @cooking_class.date%></p>
       <p><strong>Time:</strong> <%= @cooking_class.time.strftime("%H:%M %Z") %></p>
       <p><strong>Capacity:</strong> <%= @cooking_class.capacity%></p>
-      <p><strong>Teacher:</strong> <%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
+      <p><strong>Chef:</strong> <%= @cooking_class.user.first_name%> <%= @cooking_class.user.last_name%></p>
 
       <% if current_user == @cooking_class.user %>
-        <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-primary" %>
+        <%= link_to "Edit", edit_cooking_class_path(@cooking_class), class: "btn btn-create-edit" %>
       <% end %>
     </div>
 
-    <div class="booking-container" style="flex: 1; min-width: 300px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+    <div class="booking-container">
       <% if user_signed_in? && current_user.bookings.exists?(cooking_class: @cooking_class) %>
-        <div class="alert alert-info mt-3">
+        <div class="alert alert-info">
           <p>You have already booked this class.</p>
+
           <%= form_with url: cancel_booking_cooking_class_path(@cooking_class), method: :delete, class: "d-inline" do %>
-            <%= submit_tag "Cancel Booking", class: "btn btn-danger" %>
+            <%= submit_tag "Cancel Booking", class: "btn btn-delete-cancel" %>
+
           <% end %>
         </div>
       <% elsif @available_spots > 0 %>
 
-        <div class="booking-container" style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
-          <h4 style="text-align: center; margin-bottom: 20px;">Book this Class</h4>
-
+          <h4>Book this Class</h4>
           <%= form_with url: book_cooking_class_path(@cooking_class), method: :post, local: true do |form| %>
             <!-- Participants -->
             <div style="margin-bottom: 15px;">
@@ -49,20 +49,20 @@
             </div>
 
             <!--  Price -->
-            <div style="margin-bottom: 15px;">
-              <label for="total_price" style="display: block;">Total Price</label>
+            <div>
+              <label for="total_price">Total Price</label>
               <input type="text" id="total_price" readonly value="<%= number_to_currency(@cooking_class.price, unit: '€') %>">
             </div>
 
             <!-- Submit Button -->
               <% if user_signed_in? %>
-                <%= form.submit "Confirm Booking", style: "width: 100%; padding: 10px; background: #813531; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;" %>
+                <%= form.submit "Confirm Booking", class: "btn" %>
               <% else %>
-                <%= link_to "Login to Book", new_user_session_path, class: "btn btn-primary" %>
+                <%= link_to "Login to Book", new_user_session_path, class: "btn btn-login" %>
               <% end %>
           <% end %>
       <% else %>
-        <div class="alert alert-warning mt-4">
+        <div class="alert alert-warning">
           <p>This class is fully booked.</p>
         </div>
       <% end %>
