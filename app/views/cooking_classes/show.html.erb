@@ -56,7 +56,7 @@
 
             <!-- Submit Button -->
               <% if user_signed_in? %>
-                <%= form.submit "Confirm Booking", class: "btn" %>
+                <%= form.submit "Confirm Booking", class: "btn-primary" %>
               <% else %>
                 <%= link_to "Login to Book", new_user_session_path, class: "btn btn-login" %>
               <% end %>
