@@ -5,6 +5,9 @@
       You've got <%= @bookings.count %> classes lined up—time to sharpen your skills and satisfy your taste buds!
     <% else %>
       No classes booked yet? Explore the menu of exciting options and dive into the world of cooking!
+      <br>
+      <br>
+      <%= link_to "Back to Classes", cooking_classes_path, class: "btn btn-back-overview", style: "text-decoration: none;" %>
     <% end %>
   </p>
 
@@ -32,7 +35,5 @@
         </div>
       <% end %>
     </div>
-  <% else %>
-    <p>You have no bookings yet.</p>
   <% end %>
 </div>
